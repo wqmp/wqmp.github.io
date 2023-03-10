@@ -1,8 +1,3 @@
 # Build files
 __pycache__/
 .wyvern/
-
-# Generated Files
-sitemap.json
-*.html
-*.min.js

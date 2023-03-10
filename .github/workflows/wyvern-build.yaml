@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo bash wyvern build --out _site
           echo "Deploying: "
-          ls _site
+          ls _site -R
       
       - uses: actions/upload-pages-artifact@v1.0.7
   

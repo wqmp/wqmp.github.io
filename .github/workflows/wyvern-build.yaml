@@ -17,7 +17,8 @@ jobs:
       - name: Run wyvern build
         run: |
           sudo bash wyvern build --out _site
-          ls -R
+          echo "Deploying: "
+          ls _site
       
       - uses: actions/upload-pages-artifact@v1.0.7
   

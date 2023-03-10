@@ -19,5 +19,21 @@ jobs:
           sudo bash wyvern build
       
       - uses: actions/upload-pages-artifact@v1.0.7
-      - uses: actions/deploy-pages@v1.2.5
+  
+  deploy:
+    needs: build
+
+   permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1.2.5
 

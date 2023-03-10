@@ -16,9 +16,7 @@ jobs:
 
       - name: Run wyvern build
         run: |
-          sudo bash wyvern build
-          mkdir -p _site
-          mv * _site || true
+          sudo bash wyvern build --out _site
       
       - uses: actions/upload-pages-artifact@v1.0.7
   

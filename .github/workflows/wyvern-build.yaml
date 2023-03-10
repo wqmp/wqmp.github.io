@@ -14,6 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
+      - name: Run wyvern build
         run: |
           sudo bash wyvern build
+      
+      - uses: actions/upload-pages-artifact@v1.0.7
+      - uses: actions/deploy-pages@v1.2.5
+

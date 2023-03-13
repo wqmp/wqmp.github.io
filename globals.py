@@ -13,6 +13,7 @@ BOILERPLATE='''<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" href="site.webmanifest" />
+<script src="/assets/js/kitsunecore.min.js"></script>
 <script>
     (async function() {
         let serviceWorker = null;
@@ -42,11 +43,7 @@ BOILERPLATE='''<meta charset="UTF-8">
         window.serviceWorker = serviceWorker;
     })();
 </script>
-''' + readfile("assets/icons/icons.html") + '''
-
-''' + '''
-
-'''
+''' + readfile("assets/icons/icons.html")
 
 
 TS='type="text/typescript"'

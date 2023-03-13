@@ -16,6 +16,8 @@ BOILERPLATE='''<meta charset="UTF-8">
 <script src="/assets/js/kitsunecore.min.js"></script>
 <script>
     (async function() {
+        console.log('Page loaded at ' + new Date());
+
         let serviceWorker = null;
         if ('serviceWorker' in navigator) {
             try {
@@ -27,9 +29,9 @@ BOILERPLATE='''<meta charset="UTF-8">
                                 ?? null;
 
                 if (serviceWorker) {
-                    const logServiceWorkerState = () => console.log('Service Worker State: ' + serviceWorker.state);
-                    logServiceWorkerState();
-                    serviceWorker.addEventListener("statechange", event => logServiceWorkerState());
+                    const serviceWorkerState = JSX.createState(serviceWorker.state);
+                    serviceWorkerState.connectCallback(() => console.log('Service Worker State: ' + serviceWorker.state));
+                    serviceWorker.addEventListener("statechange", serviceWorkerState.consume(event=>serviceWorker.state));
                 } else {
                     throw new Error('Service Worker is null');
                 }
@@ -41,6 +43,21 @@ BOILERPLATE='''<meta charset="UTF-8">
         }
 
         window.serviceWorker = serviceWorker;
+
+        window.promptInstall = null;
+        window.addEventListener("beforeinstallprompt", (beforeInstallPromptEvent) => {
+            beforeInstallPromptEvent.preventDefault();
+
+            
+            window.promptInstall = async function promptInstall() {
+                beforeInstallPromptEvent.prompt();
+                //if((await beforeInstallPromptEvent.userChoice).outcome === 'dismissed') {
+                //    window.location.reload();
+                //}
+                //window.matchMedia('(display-mode: standalone)').matches
+            }
+
+        });
     })();
 </script>
 ''' + readfile("assets/icons/icons.html")

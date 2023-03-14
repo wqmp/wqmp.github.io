@@ -1,0 +1,58 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="site.webmanifest" />
+<script src="/assets/js/kitsunecore.min.js"></script>
+<script>
+    (async function() {
+        globalThis.App = {
+            loadedAt: new Date(),
+            serviceWorker: null,
+            installable: JSX.createState(false),
+            serviceWorkerState: JSX.createState('unknown'),
+            async promptInstall() {
+                throw new Error('App is not installable yet!');
+            },
+            isPWA() {
+                return window.matchMedia('(display-mode: standalone)').matches;
+            }
+        };
+        
+        console.log('Page loaded at ' + App.loadedAt);
+
+        if ('serviceWorker' in navigator) {
+            try {
+                const registration = await navigator.serviceWorker.register("/service-worker.js");
+
+                App.serviceWorker = registration.installing
+                                ?? registration.waiting
+                                ?? registration.active
+                                ?? null;
+
+                if (App.serviceWorker) {
+                    App.serviceWorkerState.set(App.serviceWorker.state);
+                    App.serviceWorkerState.connectCallback(() => console.log('Service Worker State: ' + App.serviceWorker.state));
+                    App.serviceWorker.addEventListener("statechange", App.serviceWorkerState.consume(event=>App.serviceWorker.state));
+                } else {
+                    throw new Error('Service Worker is null');
+                }
+            } catch(error) {
+                console.error('Error installing Service Worker: ' + error);
+            }
+        } else {
+            console.error('Error installing Service Worker: ' + 'Service Workers are not supported');
+        }
+
+
+        window.addEventListener("beforeinstallprompt", (beforeInstallPromptEvent) => {
+            beforeInstallPromptEvent.preventDefault();
+            
+            App.installable.set(true);
+            App.promptInstall = async function promptInstall() {
+                beforeInstallPromptEvent.prompt();
+                return (await beforeInstallPromptEvent.userChoice).outcome;
+            }
+
+        });
+    })();
+</script>

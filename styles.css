@@ -1,6 +1,6 @@
 h1 {
-	color: blue;
-	/* background: linear-gradient(
-        to right, #f32170, #ff6b08,
-         #cf23cf, #eedd44); */
+	font-size: 72px;
+	background: -webkit-linear-gradient(#009ffd, #2a2a72);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }

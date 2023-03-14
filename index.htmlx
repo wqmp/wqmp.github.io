@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-	<link rel="stylesheet" href="styles.css" />
 	<head>
 		%{indent(BOILERPLATE,levels=2)}
 		<title>Hello World</title>
+		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
 		<h1>%{"Hello World"}</h1>
+
+		<script %{TS}>
+			(async function($ctx) {
+				const csvText = await (await fetch('/sample-data.csv')).text();
+				const data = CSV.parse(csvText);
+				console.log(data);
+				$ctx.replaceWith(
+					<h2>Total Flow: {data.reduce((acc, {flow})=>acc+(+flow), 0).toFixed(2)} gallons</h2> // Due to the TS in the script tag, we can use JSX here
+				);
+
+			})($ctx); // $ctx is the current <script> tag
+		</script>
 
 		<div>
 			<canvas id="myChart"></canvas>
@@ -15,7 +27,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 		<script>
-			const ctx = document.getElementById("myChart");
+			// We have a jQuery like $ function
+			const ctx = $("#myChart");
 
 			new Chart(ctx, {
 				type: "bar",

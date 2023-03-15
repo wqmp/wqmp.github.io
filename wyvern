@@ -141,7 +141,7 @@ if [[ $(ls | grep 'wyvern\.conf') ]]; then
     echo "Reading config file..."
     config=$(cat wyvern.conf)
     if [[ $(echo "$config" | grep '^--out .') ]]; then
-        BUILD_DIR="$(echo "$config" | awk -F' ' '/^--out/ { print $2 }')"
+        BUILD_DIR="$(echo "$config" | grep -Po '(?<=--out )[^\r\n]*')"
     fi;
     if [[ $(echo "$config" | grep '^--force') ]]; then
         FORCE_REBUILD='YES'

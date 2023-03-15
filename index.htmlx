@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-	<link rel="stylesheet" href="styles.css" />
-	<head>
-		%{indent(BOILERPLATE,levels=2)}
+    <head>
+        %{indent(BOILERPLATE,levels=2)}
 		<title>Hello World</title>
-		<script
-			src="https://kit.fontawesome.com/40162240bb.js"
-			crossorigin="anonymous"
-		></script>
+        <!--Load stylesheets after higher priority metadata, we don't need css till the body-->
+        <link rel="stylesheet" href="/assets/css/styles.css" />
+        <!-- Prefer hosting the files ourselves -->
+		<script src="/assets/js/fontawesome.js"></script>
+		<script src="/assets/js/chart.js"></script>
+        <!--
+            here's how to read csv data
+            <script %{TS}>
+                (async function($ctx) {
+                    const csvText = await (await fetch('/sample-data.csv')).text();
+                    const data = CSV.parse(csvText);
+                    console.log(data);
+                    $ctx.replaceWith(
+                        <h2>Total Flow: {data.reduce((acc, {flow})=>acc+(+flow), 0).toFixed(2)} gallons</h2> // Due to the TS in the script tag, we can use JSX here
+                    );
+
+                })($ctx); // $ctx is the current <script> tag
+            </script>
+        -->
 	</head>
 	<body>
 		<nav class="sidebar">

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        %{indent(BOILERPLATE,levels=2)}
+	<head>
+		%{indent(BOILERPLATE,levels=2)}
 		<title>Hello World</title>
-        <!--Load stylesheets after higher priority metadata, we don't need css till the body-->
-        <link rel="stylesheet" href="/assets/css/styles.css" />
-        <!-- Prefer hosting the files ourselves -->
+		<!--Load stylesheets after higher priority metadata, we don't need css till the body-->
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+		<!-- Prefer hosting the files ourselves -->
 		<script src="/assets/js/fontawesome.js"></script>
 		<script src="/assets/js/chart.js"></script>
-        <!--
+		<!--
             here's how to read csv data
             <script %{TS}>
                 (async function($ctx) {
@@ -40,6 +40,25 @@
 
 				<i class="fa-solid fa-chevron-right toggle"></i>
 			</header>
+
+			<div class="menu-bar">
+				<div class="menu">
+					<li class="nav-link">
+						<a href="#">
+							<i class="fa-solid fa-magnifying-glass icon"></i>
+							<input type="search" placeholder="Search..." />
+						</a>
+					</li>
+					<ul class="menu-links">
+						<li class="nav-link">
+							<a href="#">
+								<i class="fa-solid fa-house icon"></i>
+								<span class="text nav-text">Dashboard</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</nav>
 	</body>
 </html>

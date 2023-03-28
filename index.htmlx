@@ -40,21 +40,50 @@
 
 				<i class="fa-solid fa-chevron-right toggle"></i>
 			</header>
-
 			<div class="menu-bar">
 				<div class="menu">
-					<li class="nav-link">
+					<li class="search-box">
 						<i class="fa-solid fa-magnifying-glass icon"></i>
 						<input type="search" placeholder="Search..." />
 					</li>
-					<ul class="menu-links">
-						<li class="nav-link">
-							<a href="javascript:void(0)">
-								<i class="fa-solid fa-house icon"></i>
-								<span class="text nav-text">Dashboard</span>
-							</a>
-						</li>
-					</ul>
+					<li class="nav-link">
+						<a href="#">
+							<i class="fa-solid fa-house icon"></i>
+							<span class="text nav-text">Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="#">
+							<i class="fa-solid fa-chart-simple icon"></i>
+							<span class="text nav-text">Water Use</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="#">
+							<i class="fa-sharp fa-solid fa-bell icon"></i>
+							<span class="text nav-text">Notifications</span>
+						</a>
+					</li>
+					<!-- <li class="nav-link">
+						<a href="#">
+							<i class="fa-solid fa-house icon"></i>
+							<span class="text nav-text">Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="#">
+							<i class="fa-solid fa-house icon"></i>
+							<span class="text nav-text">Dashboard</span>
+						</a>
+					</li> -->
+					<li class="nav-link">
+						<a href="#">
+							<i
+								class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 icon"
+							></i>
+							<span class="text nav-text">Logout</span>
+						</a>
+					</li>
 				</div>
 			</div>
 		</nav>

@@ -2,8 +2,76 @@
 <html>
 	<head>
 		<title>Dashboard</title>
+        <link rel="stylesheet" href="/assets/css/styles.css" />
+		<script src="/assets/js/fontawesome.js"></script>
+		<script src="/assets/js/chart.js"></script>
+        
 	</head>
-	<body>
-		<p>Hello World</p>
-	</body>
+</head>
+<body>
+    <script src="script.js"></script>
+    <nav class="sidebar away close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="assets\icons\maskable_icon.png" alt="wq logo" />
+                </span>
+                <div class="text header-text">
+                    <i class="fa-solid fa-font-case">
+                        <span class="name">Water Quality </span>
+                        <span class="monitor">Monitor</span>
+                    </i>
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-right toggle"></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                    <input type="search" placeholder="Search..." />
+                </li>
+                <li class="nav-link">
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house icon"></i>
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class="fa-solid fa-chart-simple icon"></i>
+                        <span class="text nav-text">Water Use</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class="fa-sharp fa-solid fa-bell icon"></i>
+                        <span class="text nav-text">Notifications</span>
+                    </a>
+                </li>
+                <!-- <li class="nav-link">
+                    <a href="#">
+                        <i class="fa-solid fa-house icon"></i>
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class="fa-solid fa-house icon"></i>
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li> -->
+                <li class="nav-link">
+                    <a href="#">
+                        <i
+                            class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 icon"
+                        ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+</body>
 </html>

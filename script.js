@@ -4,9 +4,7 @@ const body = document.querySelector("body"),
 	searchBtn = body.querySelector(".search-box");
 
 const closesidebar = () => {
-	sidebar.classList.toggle("away");
+	sidebar.classList.toggle("close");
 };
 
 toggle.addEventListener("click", closesidebar);
-
-

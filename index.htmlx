@@ -24,7 +24,7 @@
         -->
 	</head>
 	<body>
-		<nav class="sidebar close">
+		<nav class="sidebar away">
 			<header>
 				<div class="image-text">
 					<span class="image">
@@ -47,7 +47,7 @@
 						<input type="search" placeholder="Search..." />
 					</li>
 					<li class="nav-link">
-						<a href="#">
+						<a href="dashboard.htmlx">
 							<i class="fa-solid fa-house icon"></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>

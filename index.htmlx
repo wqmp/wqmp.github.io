@@ -24,8 +24,7 @@
         -->
 	</head>
 	<body>
-		<script src="script.js"></script>
-		<nav class="sidebar away close">
+		<nav class="sidebar">
 			<header>
 				<div class="image-text">
 					<span class="image">
@@ -40,6 +39,9 @@
 				</div>
 
 				<i class="fa-solid fa-chevron-right toggle"></i>
+				<script %{TS}>
+					$last.$on('click',()=>$('.sidebar').classList.toggle("close"));
+				</script>
 			</header>
 			<div class="menu-bar">
 				<div class="menu">
@@ -48,18 +50,18 @@
 						<input type="search" placeholder="Search..." />
 					</li>
 					<li class="nav-link">
-						<a href="dashboard.html">
+						<a href="dashboard.html" target="page-contents">
 							<i class="fa-solid fa-house icon"></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
-					<li class="nav-link">
+					<li class="nav-link" target="page-contents">
 						<a href="#">
 							<i class="fa-solid fa-chart-simple icon"></i>
 							<span class="text nav-text">Water Use</span>
 						</a>
 					</li>
-					<li class="nav-link">
+					<li class="nav-link" target="page-contents">
 						<a href="#">
 							<i class="fa-sharp fa-solid fa-bell icon"></i>
 							<span class="text nav-text">Notifications</span>
@@ -77,7 +79,7 @@
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li> -->
-					<li class="nav-link">
+					<li class="nav-link" target="page-contents" >
 						<a href="#">
 							<i
 								class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 icon"
@@ -88,5 +90,6 @@
 				</div>
 			</div>
 		</nav>
+		<iframe id="page-contents" name="page-contents" src="https://stevebeeblebrox.github.io"></iframe>
 	</body>
 </html>

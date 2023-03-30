@@ -29,14 +29,27 @@
     there's a handful of other features too!
 */
 
-body {
-	height: 100vh;
+html, body {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
 	background: gray;
+	font-family: Arial, Helvetica, sans-serif
+}
+
+body {
+	display: flex;
+}
+
+#page-contents {
+	border: none;
+	flex-grow: 1;
 }
 
 /* ===Sidebar=== */
 .sidebar {
-	position: fixed;
+	display: inline-block;
 	top: 0;
 	left: 0;
 	height: 100%;
@@ -45,7 +58,7 @@ body {
 	background: #fff;
 	transition: all 0.5s ease;
 
-	.close {
+	&.close {
 		width: 88px;
 		.text {
 			opacity: 0;
@@ -68,6 +81,7 @@ body {
 			align-items: center;
 		}
 		.toggle {
+			cursor: pointer;
 			position: absolute;
 			top: 50%;
 			right: -25px;
@@ -138,6 +152,9 @@ body {
 			border-radius: 6px;
 			transition: all 0.4s ease;
 		}
+	}
+	.menu-bar {
+		overflow: hidden;
 	}
 }
 

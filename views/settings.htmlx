@@ -1,0 +1,8 @@
+<html lang = "en">
+    <head>
+        %{indent(BOILERPLATE,levels=2)}
+    </head>
+    <body>
+        <h1>Settings</h1>
+    </body>
+</html>

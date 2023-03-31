@@ -50,46 +50,42 @@
 						<input type="search" placeholder="Search..." />
 					</li>
 					<li class="nav-link">
-						<a href="dashboard.html" target="page-contents">
-							<i class="fa-solid fa-house icon"></i>
-							<span class="text nav-text">Dashboard</span>
-						</a>
-					</li>
-					<li class="nav-link" target="page-contents">
-						<a href="#">
-							<i class="fa-solid fa-chart-simple icon"></i>
-							<span class="text nav-text">Water Use</span>
-						</a>
-					</li>
-					<li class="nav-link" target="page-contents">
-						<a href="#">
-							<i class="fa-sharp fa-solid fa-bell icon"></i>
-							<span class="text nav-text">Notifications</span>
-						</a>
-					</li>
-					<!-- <li class="nav-link">
-						<a href="#">
+						<a href="views/dashboard.html" target="page-contents">
 							<i class="fa-solid fa-house icon"></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
 					<li class="nav-link">
-						<a href="#">
-							<i class="fa-solid fa-house icon"></i>
-							<span class="text nav-text">Dashboard</span>
+						<a href="views/usage.html" target="page-contents">
+							<i class="fa-solid fa-chart-simple icon"></i>
+							<span class="text nav-text">Water Use</span>
 						</a>
-					</li> -->
-					<li class="nav-link" target="page-contents" >
-						<a href="#">
+					</li>
+					<li class="nav-link">
+						<a href="views/notifications.html" target="page-contents">
+							<i class="fa-sharp fa-solid fa-bell icon"></i>
+							<span class="text nav-text">Notifications</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a href="views/settings.html" target="page-contents">
 							<i
-								class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 icon"
+								class="fa-solid fa-cog icon"
 							></i>
-							<span class="text nav-text">Logout</span>
+							<span class="text nav-text">Settings</span>
+						</a>
+					</li>
+					<li class="nav-link" target="page-contents" >
+						<a href="javascript:App.promptInstall()">
+							<i
+								class="fa-solid fa-download icon"
+							></i>
+							<span class="text nav-text">Install App</span>
 						</a>
 					</li>
 				</div>
 			</div>
 		</nav>
-		<iframe id="page-contents" name="page-contents" src="https://stevebeeblebrox.github.io"></iframe>
+		<iframe id="page-contents" name="page-contents" src="views/dashboard.html"></iframe>
 	</body>
 </html>

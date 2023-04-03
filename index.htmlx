@@ -41,7 +41,7 @@
 
 				<i class="fa-solid fa-chevron-right toggle"></i>
 				<script %{TS}>
-					$last.$on('click',()=>$('.sidebar').classList.toggle("close"));
+					$last.$on("click", () => $(".sidebar").classList.toggle("close"));
 				</script>
 			</header>
 			<div class="menu-bar">
@@ -70,23 +70,23 @@
 					</li>
 					<li class="nav-link">
 						<a href="views/settings.html" target="page-contents">
-							<i
-								class="fa-solid fa-cog icon"
-							></i>
+							<i class="fa-solid fa-cog icon"></i>
 							<span class="text nav-text">Settings</span>
 						</a>
 					</li>
-					<li class="nav-link" target="page-contents" >
+					<li class="nav-link" target="page-contents">
 						<a href="javascript:App.promptInstall()">
-							<i
-								class="fa-solid fa-download icon"
-							></i>
+							<i class="fa-solid fa-download icon"></i>
 							<span class="text nav-text">Install App</span>
 						</a>
 					</li>
 				</div>
 			</div>
 		</nav>
-		<iframe id="page-contents" name="page-contents" src="views/dashboard.html"></iframe>
+		<iframe
+			id="page-contents"
+			name="page-contents"
+			src="views/dashboard.html"
+		></iframe>
 	</body>
 </html>

@@ -2,6 +2,7 @@
 	<head>
 		%{indent(BOILERPLATE,levels=2)}
 		<link rel="stylesheet" href="/assets/css/cards.css" />
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	</head>
 	<body>
 		<div class="cards">
@@ -9,130 +10,88 @@
 				<div>
 					<canvas id="tdsChart"></canvas>
 				</div>
-
-				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-				<script>
-					const tds = document.getElementById("tdsChart");
-
-					new Chart(tds, {
-						type: "line",
-						data: {
-							labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-							datasets: [
-								{
-									label: "Total Disolved Solids",
-									data: [12, 19, 3, 5, 2, 3],
-									borderWidth: 1,
-								},
-							],
-						},
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true,
-								},
-							},
-						},
-					});
-				</script>
-			</div>
-			<div class="card">
-				<div>
-					<canvas id="fluoroChart"></canvas>
-				</div>
-
-				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-				<script>
-					const fluoro = document.getElementById("fluoroChart");
-
-					new Chart(fluoro, {
-						type: "line",
-						data: {
-							labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-							datasets: [
-								{
-									label: "Fluorometer",
-									data: [12, 19, 3, 5, 2, 3],
-									borderWidth: 1,
-								},
-							],
-						},
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true,
-								},
-							},
-						},
-					});
-				</script>
 			</div>
 			<div class="card">
 				<div>
 					<canvas id="tbdChart"></canvas>
 				</div>
-
-				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-				<script>
-					const tbd = document.getElementById("tbdChart");
-
-					new Chart(tbd, {
-						type: "line",
-						data: {
-							labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-							datasets: [
-								{
-									label: "Turbidity",
-									data: [12, 19, 3, 5, 2, 3],
-									borderWidth: 1,
-								},
-							],
-						},
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true,
-								},
-							},
-						},
-					});
-				</script>
 			</div>
 			<div class="card">
 				<div>
 					<canvas id="phChart"></canvas>
 				</div>
-
-				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-				<script>
-					const ph = document.getElementById("phChart");
-
-					new Chart(ph, {
-						type: "line",
-						data: {
-							labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-							datasets: [
-								{
-									label: "pH",
-									data: [12, 19, 3, 5, 2, 3],
-									borderWidth: 1,
-								},
-							],
-						},
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true,
-								},
-							},
-						},
-					});
-				</script>
+			</div>
+			<div class="card">
+				<div>
+					<canvas id="fluoroChart"></canvas>
+				</div>
 			</div>
 		</div>
+
+		<script>
+			(async function () {
+				const csvText = await (
+					await fetch("https://wqmp-server.vercel.app/api/get/SAMPLE-DATA")
+				).text(); // Replace SAMPLE-DATA with device id
+				const data = CSV.parse(csvText);
+
+				const fluoro = document.getElementById("fluoroChart");
+
+				function dates() {
+					return data.map((o, i) =>
+						i % 48 == 0 ? new Date(+o.time).toLocaleDateString("en-us") : ""
+					);
+				}
+				const dates1 = dates();
+				ch(
+					$("#fluoroChart"),
+					"Fluorometer",
+					dates1,
+					data.map((i) => +i.fluoro)
+				);
+				ch(
+					$("#tbdChart"),
+					"Turbidity",
+					dates1,
+					data.map((i) => +i.tbd)
+				);
+				ch(
+					$("#phChart"),
+					"pH",
+					dates1,
+					data.map((i) => +i.ph)
+				);
+				ch(
+					$("#tdsChart"),
+					"Total Disolved Solids",
+					dates1,
+					data.map((i) => +i.tds)
+				);
+
+				__DATA__ = data;
+			})();
+			function ch(el, label, times, values) {
+				return new Chart(el, {
+					type: "line",
+					data: {
+						labels: times,
+						datasets: [
+							{
+								label: label,
+								data: values,
+								borderWidth: 1,
+							},
+						],
+					},
+					options: {
+						scales: {
+							y: {
+								beginAtZero: true,
+							},
+						},
+					},
+				});
+			}
+		</script>
 	</body>
 </html>

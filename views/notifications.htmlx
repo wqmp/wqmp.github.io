@@ -1,8 +1,45 @@
-<html lang = "en">
-    <head>
-        %{indent(BOILERPLATE,levels=2)}
-    </head>
-    <body>
-        <h1>Notifications</h1>
-    </body>
+<html lang="en">
+	<head>
+		%{indent(BOILERPLATE,levels=2)}
+		<link rel="stylesheet" href="/assets/css/noti.css" />
+		<script src="/assets/js/fontawesome.js"></script>
+		<script>
+			let sendNotifications = Notification.permission === "granted";
+			function subscribeToNotifications() {
+				if (!("Notification" in window)) {
+					toast("This browser does not support desktop notification", "long");
+				} else if (Notification.permission === "granted") {
+					sendNotifications = true;
+				} else if (Notification.permission !== "denied") {
+					Notification.requestPermission().then((permission) => {
+						if (permission === "granted") {
+							sendNotifications = true;
+							location.reload();
+						}
+					});
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button type="button" class="button" onclick="subscribeToNotifications()">
+			<span class="button-text">Get Water Quality Alerts!</span>
+			<i class="fa-solid fa-message"></i>
+			<script>
+				if (sendNotifications) $host.style.display = "none";
+			</script>
+		</button>
+		<ul></ul>
+		<script %{TS}>
+			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
+			const ul = $last;
+			eventSource.onmessage = (e) => {
+				const data = JSON.parse(event.data);
+				ul.appendChild(<li>{data.message}</li>);
+				if (sendNotifications) {
+					const notification = new Notification(data.message);
+				}
+			};
+		</script>
+	</body>
 </html>

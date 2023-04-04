@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		%{indent(BOILERPLATE,levels=2)}
-		<title>Hello World</title>
+		<title>WQMP</title>
 		<!--Load stylesheets after higher priority metadata, we don't need css till the body-->
 		<link rel="stylesheet" href="/assets/css/styles.css" />
 		<!-- Prefer hosting the files ourselves -->

@@ -6,7 +6,7 @@
         <h1>Usage</h1>
         <script %{TS}>
             (async function($ctx) {
-                const csvText = await (await fetch('https://wqmp-server.vercel.app/api/get/SAMPLE-DATA')).text(); // Replace SAMPLE-DATA with device id
+                const csvText = await (await fetch(`https://wqmp-server.vercel.app/api/get/${localStorage.getItem('DeviceId') || 'SAMPLE-DATA'}`)).text(); // Replace SAMPLE-DATA with device id
                 const data = CSV.parse(csvText);
                 console.log(data);
                 $ctx.replaceWith(
@@ -17,7 +17,7 @@
         <script %{TS}>
             (async function($ctx) {
                 const now = new Date();
-                const csvText = await (await fetch('https://wqmp-server.vercel.app/api/get/SAMPLE-DATA?after='+ (+new Date(now.getFullYear(), now.getMonth(), 1)))).text(); // Replace SAMPLE-DATA with device id
+                const csvText = await (await fetch(`https://wqmp-server.vercel.app/api/get/${localStorage.getItem('DeviceId') || 'SAMPLE-DATA'}?after=`+ (+new Date(now.getFullYear(), now.getMonth(), 1)))).text(); // Replace SAMPLE-DATA with device id
                 const data = CSV.parse(csvText);
                 console.log(data);
                 $ctx.replaceWith(

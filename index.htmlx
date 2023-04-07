@@ -6,22 +6,12 @@
 		<!--Load stylesheets after higher priority metadata, we don't need css till the body-->
 		<link rel="stylesheet" href="/assets/css/styles.css" />
 		<!-- Prefer hosting the files ourselves -->
-		<script src="/assets/js/fontawesome.js"></script>
+		<script src="https://kit.fontawesome.com/40162240bb.js" crossorigin="anonymous"></script>
 		<script src="/assets/js/chart.js"></script>
-		<!--
-            here's how to read csv data
-            <script %{TS}>
-                (async function($ctx) {
-                    const csvText = await (await fetch('https://wqmp-server.vercel.app/api/get/SAMPLE-DATA')).text(); // Replace SAMPLE-DATA with device id
-                    const data = CSV.parse(csvText);
-                    console.log(data);
-                    $ctx.replaceWith(
-                        <h2>Total Flow: {data.reduce((acc, {flow})=>acc+(+flow), 0).toFixed(2)} gallons</h2> // Due to the TS in the script tag, we can use JSX here
-                    );
-
-                })($ctx); // $ctx is the current <script> tag
-            </script>
-        -->
+		<script %{TS}>
+			const titleState = JSX.createState(null);
+			titleState.connectCallback(v => document.title = v ? `WQMP | ${v}` : 'WQMP');
+		</script>
 	</head>
 	<body>
 		<script src="https://stevebeeblebrox.github.io/assets/js/githubshortcut.min.js?title=Edit&position=top-right&margin=1&href=wqmp/wqmp.github.io/blob/main/index.htmlx"></script>
@@ -29,7 +19,7 @@
 			<header>
 				<div class="image-text">
 					<span class="image">
-						<img src="assets\icons\maskable_icon.png" alt="wq logo" />
+						<img src="assets/icons/maskable_icon.png" alt="WQMP logo" />
 					</span>
 					<div class="text header-text">
 						<i class="fa-solid fa-font-case">
@@ -51,25 +41,25 @@
 						<input type="search" placeholder="Search..." />
 					</li>
 					<li class="nav-link">
-						<a href="views/dashboard.html" target="page-contents">
+						<a href="views/dashboard.html" target="page-contents" onclick="titleState.set(null)">
 							<i class="fa-solid fa-house icon"></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
 					<li class="nav-link">
-						<a href="views/usage.html" target="page-contents">
+						<a href="views/usage.html" target="page-contents" onclick="titleState.set('Usage')">
 							<i class="fa-solid fa-chart-simple icon"></i>
 							<span class="text nav-text">Water Use</span>
 						</a>
 					</li>
 					<li class="nav-link">
-						<a href="views/notifications.html" target="page-contents">
+						<a href="views/notifications.html" target="page-contents" onclick="titleState.set('Notifications')">
 							<i class="fa-sharp fa-solid fa-bell icon"></i>
 							<span class="text nav-text">Notifications</span>
 						</a>
 					</li>
 					<li class="nav-link">
-						<a href="views/settings.html" target="page-contents">
+						<a href="views/settings.html" target="page-contents" onclick="titleState.set('Settings')">
 							<i class="fa-solid fa-cog icon"></i>
 							<span class="text nav-text">Settings</span>
 						</a>

@@ -7,70 +7,65 @@
 	<body>
 		<div class="cards">
 			<div class="card">
-				<div>
-					<canvas id="tdsChart"></canvas>
-				</div>
+				<canvas id="tdsChart"></canvas>
 			</div>
 			<div class="card">
-				<div>
-					<canvas id="tbdChart"></canvas>
-				</div>
+				<canvas id="tbdChart"></canvas>
+			</div>
+			<br>
+			<div class="card">
+				<canvas id="phChart"></canvas>
 			</div>
 			<div class="card">
-				<div>
-					<canvas id="phChart"></canvas>
-				</div>
-			</div>
-			<div class="card">
-				<div>
-					<canvas id="fluoroChart"></canvas>
-				</div>
+				<canvas id="fluoroChart"></canvas>
 			</div>
 		</div>
 
 		<script>
+			Chart.defaults.responsive = false;
 			(async function () {
 				const csvText = await (
-					await fetch("https://wqmp-server.vercel.app/api/get/SAMPLE-DATA")
-				).text(); // Replace SAMPLE-DATA with device id
+					await fetch(`https://wqmp-server.vercel.app/api/get/${localStorage.getItem('DeviceId') || 'SAMPLE-DATA'}`)
+				).text();
 				const data = CSV.parse(csvText);
 
 				const fluoro = document.getElementById("fluoroChart");
 
-				function dates() {
+				function getDates() {
 					return data.map((o, i) =>
 						i % 48 == 0 ? new Date(+o.time).toLocaleDateString("en-us") : ""
 					);
 				}
-				const dates1 = dates();
-				ch(
+				const dates = getDates();
+				attachChart(
 					$("#fluoroChart"),
 					"Fluorometer",
-					dates1,
+					dates,
 					data.map((i) => +i.fluoro)
 				);
-				ch(
+				attachChart(
 					$("#tbdChart"),
 					"Turbidity",
-					dates1,
+					dates,
 					data.map((i) => +i.tbd)
 				);
-				ch(
+				attachChart(
 					$("#phChart"),
 					"pH",
-					dates1,
+					dates,
 					data.map((i) => +i.ph)
 				);
-				ch(
+				attachChart(
 					$("#tdsChart"),
 					"Total Disolved Solids",
-					dates1,
+					dates,
 					data.map((i) => +i.tds)
 				);
 
 				__DATA__ = data;
+				window.$on('resize',()=>Object.values(Chart.instances).forEach(o=>o.resize()));
 			})();
-			function ch(el, label, times, values) {
+			function attachChart(el, label, times, values) {
 				return new Chart(el, {
 					type: "line",
 					data: {

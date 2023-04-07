@@ -1,13 +1,17 @@
 .cards {
-	padding-top: 50px;
 	margin: 0 auto;
-	max-width: 1000px;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 20px;
 	font-family: sans-serif;
+	padding: 10px;
 }
 
 .card {
+	max-width: fit-content;
+	min-width: calc(50% - 25px);
+	margin: 10px;
+	display: inline-block;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.card canvas {
+	max-width: 100%;
+	min-width: 100%;
 }

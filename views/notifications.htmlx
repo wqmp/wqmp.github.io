@@ -24,7 +24,7 @@
 	<body>
 		<button type="button" class="button" onclick="subscribeToNotifications()">
 			<span class="button-text">Get Water Quality Alerts!</span>
-			<i class="fa-solid fa-message"></i>
+			<i class="fa-solid fa-circle-exclamation"></i>
 			<script>
 				if (sendNotifications) $host.style.display = "none";
 			</script>

@@ -49,9 +49,10 @@
 				on this screen!
 			</p>
 		</div>
+		<h2 id="heading">Past Alerts:</h2>
 		<ul id="noti-display"></ul>
 
-		<script %{TS}>
+		<!-- <script %{TS}>
 			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
 			const ul = $last;
 			eventSource.onmessage = (e) => {
@@ -59,6 +60,36 @@
 				ul.appendChild(<li>{data.message}</li>);
 				if (sendNotifications) {
 					const notification = new Notification(data.message);
+				}
+			};
+		</script> -->
+		<script %{TS}>
+			// Retrieve past messages from localStorage and add them to the list
+			const pastMessages =
+				JSON.parse(localStorage.getItem("my-messages")) || [];
+			pastMessages.forEach((message) => {
+				const li = document.createElement("li");
+				li.innerHTML = message;
+				ul.appendChild(li);
+			});
+
+			// Add new messages to the list and save them to localStorage
+			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
+			const ul = $last;
+			eventSource.onmessage = (e) => {
+				const data = JSON.parse(event.data);
+				const li = document.createElement("li");
+				const message = data.message;
+				const timestamp = new Date().toLocaleString();
+				li.textContent = `${message} - `;
+				const span = document.createElement("span");
+				span.textContent = timestamp;
+				li.appendChild(span);
+				ul.appendChild(li);
+				pastMessages.push(li.innerHTML);
+				localStorage.setItem("my-messages", JSON.stringify(pastMessages));
+				if (sendNotifications) {
+					const notification = new Notification(message);
 				}
 			};
 		</script>

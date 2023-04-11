@@ -42,13 +42,14 @@
 					</li>
 					<li class="nav-link">
 						<a href="views/dashboard.html" target="page-contents" onclick="titleState.set(null)">
-							<i class="fa-solid fa-house icon"></i>
+							<!-- <i class="fa-solid fa-house icon"></i> -->
+							<i class="fa-solid fa-chart-simple icon"></i>
 							<span class="text nav-text">Dashboard</span>
 						</a>
 					</li>
 					<li class="nav-link">
 						<a href="views/usage.html" target="page-contents" onclick="titleState.set('Usage')">
-							<i class="fa-solid fa-chart-simple icon"></i>
+							<i class="fa-solid fa-droplet icon"></i>
 							<span class="text nav-text">Water Use</span>
 						</a>
 					</li>

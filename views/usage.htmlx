@@ -1,16 +1,17 @@
 <html lang = "en">
     <head>
         %{indent(BOILERPLATE,levels=2)}
+        <link rel="stylesheet" href="/assets/css/usage.css" />
     </head>
     <body>
-        <h1>Usage</h1>
+        <h1 id="head">Water Usage In Your Home</h1>
         <script %{TS}>
             (async function($ctx) {
                 const csvText = await (await fetch(`https://wqmp-server.vercel.app/api/get/${localStorage.getItem('DeviceId') || 'SAMPLE-DATA'}`)).text(); // Replace SAMPLE-DATA with device id
                 const data = CSV.parse(csvText);
                 console.log(data);
                 $ctx.replaceWith(
-                    <p>Total Water Usage: {(data.reduce((acc, {flow})=>acc+(+flow), 0)/1000*0.264172).toFixed(2)} gallons</p> // Due to the TS in the script tag, we can use JSX here
+                    <p >Total Water Usage: {(data.reduce((acc, {flow})=>acc+(+flow), 0)/1000*0.264172).toFixed(2)} gallons</p> // Due to the TS in the script tag, we can use JSX here
                 );
             })($ctx); // $ctx is the current <script> tag
         </script>

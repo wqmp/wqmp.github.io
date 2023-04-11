@@ -22,58 +22,47 @@
 		</script>
 	</head>
 	<body>
-		<div class="btn-align">
-			<button
-				type="button"
-				class="button"
-				onclick="subscribeToNotifications();"
-			>
-				<span class="button-text">Get Water Quality Alerts!</span>
-				<!-- <script>
-					if (sendNotifications) $host.style.display = "none";
-					document.getElementById("noti-off").style.display = "none";
-				</script> -->
-			</button>
-		</div>
-		<div class="page-text">
-			<p id="noti-off">
-				Click the button above to begin receiving browser notifications if a
-				potential problem is detected with your water!
-			</p>
-			<p id="noti-on" style="display: none">
-				You are currently allowing browser notifications for water quality
-				alerts. Reset site permissions to sop receiving alerts!
-			</p>
-			<p>
-				If you ever miss what a notification says, the message will be displayed
-				on this screen!
-			</p>
-		</div>
+		<script %{TS}>
+			if (sendNotifications) {
+				$ctx = (
+					<div class="page-text">
+						<p>
+							You are currently allowing browser notifications for water quality
+							alerts. Reset site permissions to sop receiving alerts!
+						</p>
+						<p>
+							If you ever miss what a notification says, the message will be
+							displayed on this screen!
+						</p>
+					</div>
+				);
+			} else {
+				$ctx = (
+					<>
+						<div class="btn-align">
+							<button
+								type="button"
+								class="button"
+								onclick={subscribeToNotifications}
+							>
+								<span class="button-text">Get Water Quality Alerts!</span>
+							</button>
+						</div>
+						<div class="page-text">
+							<p id="noti-off">
+								Click the button above to begin receiving browser notifications
+								if a potential problem is detected with your water!
+							</p>
+						</div>
+					</>
+				);
+			}
+		</script>
+
 		<h2 id="heading">Recent Alerts:</h2>
 		<ul id="noti-display"></ul>
 
-		<!-- <script %{TS}>
-			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
-			const ul = $last;
-			eventSource.onmessage = (e) => {
-				const data = JSON.parse(event.data);
-				ul.appendChild(<li>{data.message}</li>);
-				if (sendNotifications) {
-					const notification = new Notification(data.message);
-				}
-			};
-		</script> -->
 		<script %{TS}>
-			// Retrieve past messages from localStorage and add them to the list
-			//const pastMessages =
-			//	JSON.parse(localStorage.getItem("my-messages")) || [];
-			//pastMessages.forEach((message) => {
-			//	const li = document.createElement("li");
-			//	li.innerHTML = message;
-			//	ul.appendChild(li);
-			//});
-
-			// Add new messages to the list and save them to localStorage
 			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
 			const ul = $last;
 			eventSource.onmessage = (e) => {
@@ -86,8 +75,6 @@
 				span.textContent = timestamp;
 				li.appendChild(span);
 				ul.appendChild(li);
-				//pastMessages.push(li.innerHTML);
-				//localStorage.setItem("my-messages", JSON.stringify(pastMessages));
 				if (sendNotifications) {
 					const notification = new Notification(message);
 				}

@@ -49,7 +49,7 @@
 				on this screen!
 			</p>
 		</div>
-		<h2 id="heading">Past Alerts:</h2>
+		<h2 id="heading">Recent Alerts:</h2>
 		<ul id="noti-display"></ul>
 
 		<!-- <script %{TS}>

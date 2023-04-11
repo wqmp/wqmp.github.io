@@ -65,13 +65,13 @@
 		</script> -->
 		<script %{TS}>
 			// Retrieve past messages from localStorage and add them to the list
-			const pastMessages =
-				JSON.parse(localStorage.getItem("my-messages")) || [];
-			pastMessages.forEach((message) => {
-				const li = document.createElement("li");
-				li.innerHTML = message;
-				ul.appendChild(li);
-			});
+			//const pastMessages =
+			//	JSON.parse(localStorage.getItem("my-messages")) || [];
+			//pastMessages.forEach((message) => {
+			//	const li = document.createElement("li");
+			//	li.innerHTML = message;
+			//	ul.appendChild(li);
+			//});
 
 			// Add new messages to the list and save them to localStorage
 			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
@@ -86,8 +86,8 @@
 				span.textContent = timestamp;
 				li.appendChild(span);
 				ul.appendChild(li);
-				pastMessages.push(li.innerHTML);
-				localStorage.setItem("my-messages", JSON.stringify(pastMessages));
+				//pastMessages.push(li.innerHTML);
+				//localStorage.setItem("my-messages", JSON.stringify(pastMessages));
 				if (sendNotifications) {
 					const notification = new Notification(message);
 				}

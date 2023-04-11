@@ -22,14 +22,35 @@
 		</script>
 	</head>
 	<body>
-		<button type="button" class="button" onclick="subscribeToNotifications()">
-			<span class="button-text">Get Water Quality Alerts!</span>
-			<i class="fa-solid fa-circle-exclamation"></i>
-			<script>
-				if (sendNotifications) $host.style.display = "none";
-			</script>
-		</button>
-		<ul></ul>
+		<div class="btn-align">
+			<button
+				type="button"
+				class="button"
+				onclick="subscribeToNotifications();"
+			>
+				<span class="button-text">Get Water Quality Alerts!</span>
+				<!-- <script>
+					if (sendNotifications) $host.style.display = "none";
+					document.getElementById("noti-off").style.display = "none";
+				</script> -->
+			</button>
+		</div>
+		<div class="page-text">
+			<p id="noti-off">
+				Click the button above to begin receiving browser notifications if a
+				potential problem is detected with your water!
+			</p>
+			<p id="noti-on" style="display: none">
+				You are currently allowing browser notifications for water quality
+				alerts. Reset site permissions to sop receiving alerts!
+			</p>
+			<p>
+				If you ever miss what a notification says, the message will be displayed
+				on this screen!
+			</p>
+		</div>
+		<ul id="noti-display"></ul>
+
 		<script %{TS}>
 			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
 			const ul = $last;

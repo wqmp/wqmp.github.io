@@ -71,13 +71,17 @@
 							<span class="text nav-text">Install App</span>
 						</a>
 					</li>
+					<script>
+						$$('a[target="page-contents"]').$forEach(e=>e.$on('click',()=>sessionStorage.setItem('LastView',e.href)));
+					</script>
 				</div>
 			</div>
 		</nav>
 		<iframe
 			id="page-contents"
 			name="page-contents"
-			src="views/dashboard.html"
+			src=""
 		></iframe>
+		<script>$last.src=sessionStorage.getItem('LastView') || 'views/dashboard.html'</script>
 	</body>
 </html>

@@ -63,7 +63,7 @@
 		<ul id="noti-display"></ul>
 
 		<script %{TS}>
-			const eventSource = new EventSource("https://ntfy.sh/wqmp-TESTING/sse");
+			const eventSource = new EventSource(`https://ntfy.sh/wqmp-${localStorage.getItem('DeviceId') || 'SAMPLE-DATA'}/sse`);
 			const ul = $last;
 			eventSource.onmessage = (e) => {
 				const data = JSON.parse(event.data);
